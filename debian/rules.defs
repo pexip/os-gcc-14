@@ -15,9 +15,10 @@ stampdir	= stamps
 
 distribution	:= $(shell lsb_release -is)
 distrelease	:= $(shell lsb_release -cs)
-derivative	:= $(shell if dpkg-vendor --derives-from Ubuntu; then echo Ubuntu; \
-			elif dpkg-vendor --derives-from Debian; then echo Debian; \
-			else echo Unknown; fi)
+#derivative	:= $(shell if dpkg-vendor --derives-from Ubuntu; then echo Ubuntu; \
+#			elif dpkg-vendor --derives-from Debian; then echo Debian; \
+#			else echo Unknown; fi)
+derivative      := Debian
 
 # On non official archives, "lsb_release -cs" default to "n/a". Assume
 # sid in that case 
@@ -1447,6 +1448,9 @@ else ifeq ($(distribution),Ubuntu)
     pie_archs += armhf arm64 i386
   endif
   pie_archs += riscv64
+endif
+ifeq ($(distribution),PexOS)
+  pie_archs = amd64 arm64
 endif
 ifneq (,$(filter $(DEB_TARGET_ARCH),$(pie_archs)))
   with_pie := yes
