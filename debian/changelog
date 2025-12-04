@@ -1,3 +1,9 @@
+gcc-14 (14.2.0-19+pexip25u3) pexip-trixie; urgency=medium
+
+  * Trixie build for product distribution
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Thu, 04 Dec 2025 13:23:24 +0000
+
 gcc-14 (14.2.0-19+pexip25u2) pexip-trixie; urgency=medium
 
   * Rebuild with PIE enabled for PexOS
