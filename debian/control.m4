@@ -13,7 +13,7 @@ dnl ifdef(`ARCH',		, errexit(`ARCH'))
 dnl The architecture will also be defined (-D__i386__, -D__powerpc__, etc.)
 
 define(`PN', `$1')
-define(`MAINTAINER', `Debian GCC Maintainers <debian-gcc@lists.debian.org>')
+define(`MAINTAINER', `Pexip AS <packaging@pexip.com>')
 
 define(`depifenabled', `ifelse(index(enabled_languages, `$1'), -1, `', `$2')')
 define(`ifenabled', `ifelse(index(enabled_languages, `$1'), -1, `dnl', `$2')')
@@ -54,8 +54,9 @@ Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: MAINTAINER
 ', `dnl
 Maintainer: MAINTAINER
+XSBC-Pexip-Original-Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
 ')dnl DIST
-Uploaders: Matthias Klose <doko@debian.org>
+XSBC-Pexip-Original-Uploaders: Matthias Klose <doko@debian.org>
 Standards-Version: 4.7.0
 ifdef(`TARGET',`dnl cross
 Build-Depends: DEBHELPER_BUILD_DEP DPKG_BUILD_DEP
