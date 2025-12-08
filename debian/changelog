@@ -1,3 +1,9 @@
+gcc-14 (14.2.0-19+pexip25u5) pexip-trixie; urgency=medium
+
+  * Rebuild to move libatomic1 to main.
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 08 Dec 2025 16:16:28 +0000
+
 gcc-14 (14.2.0-19+pexip25u4) pexip-trixie; urgency=medium
 
   * Fix maintainers/uploaders
