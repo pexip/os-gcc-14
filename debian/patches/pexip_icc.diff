@@ -1,0 +1,38 @@
+diff -Naur a/src/libstdc++-v3/config/os/gnu-linux/os_defines.h b/src/libstdc++-v3/config/os/gnu-linux/os_defines.h
+--- a/src/libstdc++-v3/config/os/gnu-linux/os_defines.h	2024-08-01 09:17:18.000000000 +0100
++++ b/src/libstdc++-v3/config/os/gnu-linux/os_defines.h	2025-12-15 10:27:12.410827859 +0000
+@@ -52,6 +52,11 @@
+ // Glibc 2.26 on i?86/x86-64/ia64/ppc64le added *f128 support.
+ // Glibc 2.27 added it also on many other arches but those have IEEE quad
+ // long double.
++
++// If on old Intel compiler, we don't have FLOAT128
++#if defined(__INTEL_COMPILER)
++#undef _GLIBCXX_HAVE_FLOAT128_MATH
++#else /* __INTEL_COMPILER */
+ #if __GLIBC_PREREQ(2, 26) \
+     && (defined(__i386__) || defined(__x86_64__) || defined (__ia64__) \
+ 	|| (defined(__powerpc__) && defined(_ARCH_PWR8) \
+@@ -59,6 +64,7 @@
+ 	    && defined(__FLOAT128__)))
+ # define _GLIBCXX_HAVE_FLOAT128_MATH 1
+ #endif
++#endif /* __INTEL_COMPILER */
+ 
+ // Enable __cxa_thread_atexit to rely on a (presumably libc-provided)
+ // __cxa_thread_atexit_impl, if it happens to be defined, even if
+diff -Naur a/src/libstdc++-v3/include/Makefile.in b/src/libstdc++-v3/include/Makefile.in
+--- a/src/libstdc++-v3/include/Makefile.in	2024-08-01 09:17:18.000000000 +0100
++++ b/src/libstdc++-v3/include/Makefile.in	2025-12-15 10:25:55.735225047 +0000
+@@ -1896,6 +1896,11 @@
+ 	    -e '/[	 ]_GLIBCXX_LONG_DOUBLE_ALT128_COMPAT[	 ]/d' \
+ 	    < ${CONFIG_HEADER} >> $@ ;\
+ 	echo "" >> $@ ;\
++	echo "/* Pexip: handle older Intel compiler */" >> $@ ;\
++	echo "#if defined(__INTEL_COMPILER)" >> $@ ;\
++	echo "#undef __cpp_variable_templates" >> $@ ;\
++	echo "#endif" >> $@ ;\
++	echo "" >> $@ ;\
+ 	echo "#endif // _GLIBCXX_CXX_CONFIG_H" >> $@
+ 
+ ${host_builddir}/gthr.h: ${toplevel_srcdir}/libgcc/gthr.h stamp-${host_alias}

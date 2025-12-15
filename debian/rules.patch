@@ -253,6 +253,9 @@ debian_patches += go-testsuite
 # don't remove, this is regularly overwritten, see PR sanitizer/63958.
 #debian_patches += libasan-sparc
 
+# Pexip patches go here
+debian_patches += pexip_icc
+
 series_stamp = $(stampdir)/02-series-stamp
 series: $(series_stamp)
 $(series_stamp):

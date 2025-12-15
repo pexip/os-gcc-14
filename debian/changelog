@@ -1,3 +1,9 @@
+gcc-14 (14.2.0-19+pexip25u6) pexip-trixie; urgency=medium
+
+  * Add patch to handle older ICC compiler.
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Mon, 15 Dec 2025 10:30:51 +0000
+
 gcc-14 (14.2.0-19+pexip25u5) pexip-trixie; urgency=medium
 
   * Rebuild to move libatomic1 to main.
